@@ -16,14 +16,24 @@ from os import write
 
 #File of names
 with open("Input/Names/invited_names.txt","r") as inv_text:
+    #Reads the text
     invite = inv_text.read()
+    #Strips out the blank lines that would return \n
     cleaned = invite.strip()
+    #Makes a list containing each line of text, seperately
     inv_list = cleaned.splitlines()
 
+#Write out the letters
+letters = []
 with open("Input/Letters/starting_letter.txt","r") as starting_letter:
+    #Reads the text
     letter = starting_letter.read()
-    iter_count = len(inv_list)
-    for i in range (0, iter_count-1):
+    #Number of times to write out a letter. Max index will be total list length -1
+    iter_count = len(inv_list)-1
+    #Iterate through all items in list
+    for i in range (0, iter_count):
+        #Writes out the letter replacing [name] with invitee name from list
         new_letter = letter.replace("[name]",inv_list[i])
-
-        with open()
+        #Write out a .txt file in the ReadyToSend folder with the name of the invitee.
+        with open(file=f"Output/ReadyToSend/{inv_list[i]}.txt",mode="w") as to_send:
+            to_send.write(new_letter)
